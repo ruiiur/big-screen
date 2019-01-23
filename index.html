@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="x5-fullscreen" content="true">
+    <meta name="full-screen" content="yes">
+    <title>实时交易数据统计</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/jquery.lineProgressbar.css">
+    <link rel="stylesheet" href="css/animate.css">
+    <script src="https://apps.bdimg.com/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/wow.min.js"></script>
+    <script src="js/echarts.min.js"></script>
+    <script src="js/china.js"></script>
+    <script src="js/circleChart.min.js"></script>
+    <script src="js/jquery.lineProgressbar.js"></script>
+    <!-- <script src="js/main.js"></script> -->
+    <script src="js/server.js"></script>
+    <script>window.jQuery || document.write('<script src="js/jquery-1.11.0.min.js"><\/script>')</script>
+</head>
+<body>
+    <div class="content-main">
+        <h1 class="title wow swing">实时交易数据统计</h1>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="left-one wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.1s">
+                   <img src="images/yewu-data.png" alt="">
+                   <p>业务数据</p>
+                   <div class="row">
+                       <div class="col-md-6 indicator ind-left">
+                           <p>业绩指标<span class="performance-indicator"></span>万</p>
+                           <div>
+                                <div class="circleChart" id="0" data-value="65"></div>
+                                <p class="performance-pre"></p>
+                           </div>
+                           <h3 class="performance-com"></h3>
+                       </div>
+                       <div class="col-md-6 indicator ind-right">
+                            <p>收客指标<span class="guest-indicator"></span>人</p>
+                            <div>
+                                <div class="circleChart" id="1" data-value="36"></div>
+                                <p class="guest-pre"></p>
+                            </div>
+                            <h3 class="guest-com"></h3>
+                       </div>
+                   </div>
+                </div>
+                <div class="left-two wow rollIn" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <img src="images/xiao-k.png" alt="">
+                    <p>销售TOP5排行</p>
+                    <div>
+                        <p class="max-list"></p>
+                        <ul class="sale-top">
+                        </ul>
+                    </div>
+                </div>
+                <div class="left-three wow fadeInUp" data-wow-duration="1s" data-wow-delay="1s">
+                    <img src="images/kehu.png" alt="">
+                    <p>客户TOP5排行</p>
+                    <div class="customer">
+                        <!-- <p class="active">1.广东某某国际旅行社公司</p>
+                        <p>2.北京某某洲国际旅行社有限公司</p>
+                        <p>3.新疆某某旅行社有限责任股份公司</p>
+                        <p>4.武汉某某国际旅行社有限公司</p>
+                        <p>5.广东某某国际旅行社公司</p> -->
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6 main-center">
+                <p><img src="images/time.png" alt=""><span>2018.01.01-<i class="now-data"></i></span></p>
+                <div class="warn" style="display: none">
+                    <img class="warn-new" src="images/warn.gif" alt="">
+                    <div>
+                        <h2>预警信息</h2>
+                        <p class="active">1.8月份订单销售量数据异常！</p>
+                        <p>2.员工陈政连续三天迟到！</p>
+                        <p>3.8月份业绩指标剩余54%未完成！</p>
+                    </div>
+                </div>
+                <div class="sum-data">
+                    <p>销售总额<span class="sale-sum"></span></p>
+                    <!-- <p>同比增长<span>150%</span></p> -->
+                </div>
+                <div class="map">
+                    <div id="main" class="wow bounceInDown" data-wow-duration="1s" data-wow-delay="0.5s"></div>
+                    <div class="region-con">
+                        <p>地区TOP5排行</p>
+                        <div id="region-grow" style="width: 310px;height:250px;"></div>
+                        <!-- <img class="rotate" src="images/rotate.gif" alt="">
+                        <img class="area" src="images/diqu.png" alt=""> -->
+                    </div>
+                </div>
+                <div class="center-bottom wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <img src="images/xiao.png" alt="">
+                    <p>销售额增速<span>(单位:万)</span></p>
+                    <div id="sale-grow" style="width: 103%;height:257px;"></div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="right-one wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <img src="images/order.png" alt="">
+                    <p>最新订单</p>
+                    <div>
+                        <p><span>销售</span><span>人数</span><span>时间</span><span>订单来源</span></p>
+                        <ul class="new-order">
+                            <!-- <li><span>杨文俊</span><span>4人</span><span>07-08 16:40</span><span>广东某某旅行社有...</span></li>
+                            <li  class="active"><span>10人+2</span><span>4人</span><span>07-08 16:40</span><span>广东某某旅行社有...</span></li>
+                            <li><span>易烊千玺</span><span>3人</span><span>07-08 16:40</span><span>广东某某旅行社有...</span></li> -->
+                        </ul>
+                    </div>
+                </div>
+                <div class="right-two wow rollIn"  data-wow-duration="1s" data-wow-delay="0.7s">
+                    <img src="images/shou.png" alt="">
+                    <p>应收款</p>
+                    <div>
+                        <h2 class="receivable"></h2>
+                        <div class="votebox">
+                            <dl class="barbox">
+                                <dd class="barline">
+                                    <!-- <div w="50" style="width:0px;" class="charts"></div> -->
+                                </dd>
+                            </dl>
+                        </div>
+                        <p class="received"></p>
+                    </div>
+                </div>
+                <div class="right-three wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.2s">
+                    <img src="images/yewu.png" alt="">
+                    <p>业务增长率</p>
+                    <div class="business-con">
+                        <div id="business-grow" style="width: 100%;height:214px;"></div>
+                    </div>
+                    <div class="business-tip">
+                        <p><i></i>客户数量</p>
+                        <p><i></i>订单数量</p>
+                    </div>
+                </div>
+                <div class="right-four wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+                    <img src="images/re.png" alt="">
+                    <p>热销线路TOP5排行</p>
+                    <div class="hot-line">
+                        <!-- <p class="active">1.ABC俄罗斯双飞九天含豪华大金床家庭套间三......</p>
+                        <p>2.俄罗斯八天五星尊悦之旅</p>
+                        <p>3.[元旦]北欧挪威+冰岛+滑雪+豪华游艇出海......</p>
+                        <p>4.[张家界促销月 | 粤湘联欢晚会+超级豪华家庭......</p>
+                        <p>5.西部世界惊险旅程续</p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- <script>
+            $(".circleChart#1").circleChart({
+                size:85,
+                value: 36,
+                text: 0,
+                widthRatio: 0.15,
+                startAngle: -175, // 进度条起点
+                counterclockwise: true, // 进度条反方向
+            });
+            $(".circleChart#0").circleChart({
+                size: 95,
+                value: 65,
+                text: 0,
+                widthRatio: 0.15,
+                startAngle: -175, // 进度条起点
+                counterclockwise: true, // 进度条反方向
+                onDraw: function(el, circle) {
+                    circle.text(Math.round(circle.value) + "%");
+                }
+            });
+        </script> -->
+</body>
+</html>
